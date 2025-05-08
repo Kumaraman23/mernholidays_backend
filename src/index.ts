@@ -59,6 +59,7 @@ app.get("*", (req: Request, res: Response) => {
   res.status(404).json({ message: "API endpoint not found" });
 });
 
-app.listen(7000, () => {
-  console.log("server running on localhost:7000");
+const PORT = process.env.PORT || 7000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
