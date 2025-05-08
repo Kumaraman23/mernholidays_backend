@@ -38,8 +38,9 @@ app.use("/api/my-hotels", myHotelRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/my-bookings", bookingRoutes);
 
+// When deployed separately, don't try to serve frontend files
 app.get("*", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+  res.status(404).json({ message: "API endpoint not found" });
 });
 
 app.listen(7000, () => {
