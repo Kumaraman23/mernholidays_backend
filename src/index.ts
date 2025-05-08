@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 // Define allowed origins including your Vercel frontend URL
 const allowedOrigins = [
   process.env.FRONTEND_URL,
-  "https://mernholidays-frontend-epry.vercel.app/", // Replace with your actual Vercel URL
+  "https://mernholidays-frontend-epry.vercel.app", // Your Vercel frontend URL (no trailing slash)
   "http://localhost:5173"
 ].filter(Boolean); // Filter out undefined values
 
