@@ -45,6 +45,7 @@ router.post(
       res.cookie("auth_token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         maxAge: 86400000,
       });
       res.status(200).json({ userId: user._id });
@@ -61,6 +62,9 @@ router.get("/validate-token", verifyToken, (req: Request, res: Response) => {
 
 router.post("/logout", (req: Request, res: Response) => {
   res.cookie("auth_token", "", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     expires: new Date(0),
   });
   res.send();
